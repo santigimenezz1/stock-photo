@@ -3,43 +3,51 @@ import NavBar from "../../../components/NavBar/NavBar"
 import TarjetaImagen from "../../../components/TarjetaImagen/TarjetaImagen"
 import '../inicio/inicio.css'
 
-const Inicio = () =>{
+
+
+    const search = async () => {
+        try {
+          const response = await fetch("https://api.pexels.com/v1/search?query=people", {
+            method: 'GET',
+            headers: {
+              'Authorization': 'vOV8UbIS6FxoVnHMiHBiu3FJlx1PsUXTesSuS3LG8weefCDW11ymoWOl',
+            }
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            console.log(data)
+            return(data);
+          } else {
+            console.error('Error al recuperar datos de la API');
+          }
+        } catch (error) {
+          console.error('Error en la solicitud:', error);
+        }
+
+    }
+  
+const Inicio = async () =>{
+
+    const images = await search()
+
+
+    console.log(images.photos.src)
     return (
         <>
-        <NavBar />
+        <NavBar  />
         <div class="grid-container">
-      <div class="grid-item">
-       <TarjetaImagen url={"https://res.cloudinary.com/dcf9eqqgt/image/upload/v1704911868/Pin_on_graffiti_alfabeto_wjn1a0.jpg"} />
-      </div>
-      <div class="grid-item">
-       <TarjetaImagen url={"https://res.cloudinary.com/dcf9eqqgt/image/upload/v1704911868/Sticker_slap_csd1dl.jpg"} />
-      </div>
-      <div class="grid-item">
-       <TarjetaImagen url={"https://res.cloudinary.com/dcf9eqqgt/image/upload/v1704911868/28dde92b-0be0-4c79-b4a8-2d4bb3540c18_azaw7v.jpg"} />
-      </div>
-      <div class="grid-item">
-       <TarjetaImagen url={"https://res.cloudinary.com/dcf9eqqgt/image/upload/v1704911868/14376ba4-ec41-4a34-8706-511c137d4c5e_lb3sau.jpg"} />
-      </div>
-      <div class="grid-item">
-       <TarjetaImagen url={"https://res.cloudinary.com/dcf9eqqgt/image/upload/v1704911868/Pin_on_graffiti_alfabeto_wjn1a0.jpg"} />
-      </div>
-      <div class="grid-item">
-       <TarjetaImagen url={"https://res.cloudinary.com/dcf9eqqgt/image/upload/v1704911868/Pin_on_graffiti_alfabeto_wjn1a0.jpg"} />
-      </div>
-      <div class="grid-item">
-       <TarjetaImagen url={"https://res.cloudinary.com/dcf9eqqgt/image/upload/v1704911868/Pin_on_graffiti_alfabeto_wjn1a0.jpg"} />
-      </div>
-      <div class="grid-item">
-       <TarjetaImagen url={"https://res.cloudinary.com/dcf9eqqgt/image/upload/v1704911868/Pin_on_graffiti_alfabeto_wjn1a0.jpg"} />
-      </div>
-      <div class="grid-item">
-       <TarjetaImagen url={"https://res.cloudinary.com/dcf9eqqgt/image/upload/v1704911868/Pin_on_graffiti_alfabeto_wjn1a0.jpg"} />
-      </div>
-      <div class="grid-item">
-       <TarjetaImagen url={"https://res.cloudinary.com/dcf9eqqgt/image/upload/v1704911868/Pin_on_graffiti_alfabeto_wjn1a0.jpg"} />
-      </div>
+            {
+                images.photos.map((img)=>(
+        <div class="grid-item">
+             <ModalImagen img={img}/>
+       </div>
 
-      <ModalImagen />
+                ))
+            }
+     
+
+
      
     </div>
 

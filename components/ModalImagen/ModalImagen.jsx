@@ -21,7 +21,7 @@ const style = {
   p: 4,
 };
 
-function ModalImagen() {
+function ModalImagen( {img} ) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -29,7 +29,7 @@ function ModalImagen() {
   return (
     <div>
         <div onClick={()=>handleOpen()}>
-             <TarjetaImagen url={"https://res.cloudinary.com/dcf9eqqgt/image/upload/v1704911868/Pin_on_graffiti_alfabeto_wjn1a0.jpg"} />
+             <TarjetaImagen url={img.src.original} />
         </div>
       <Modal
         open={open}
@@ -44,7 +44,7 @@ function ModalImagen() {
             <div className='botonDescarga__modal'>
         <BotonDescarga />
             </div>
-          <img className='imagen__modal' src='https://res.cloudinary.com/dcf9eqqgt/image/upload/v1704911868/28dde92b-0be0-4c79-b4a8-2d4bb3540c18_azaw7v.jpg'></img>
+          <img className='imagen__modal' src={img.src.original}></img>
         </div>
       </Modal>
     </div>
