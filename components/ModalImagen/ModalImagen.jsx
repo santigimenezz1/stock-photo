@@ -28,8 +28,8 @@ function ModalImagen( {img} ) {
 
   return (
     <div>
-        <div onClick={()=>handleOpen()}>
-             <TarjetaImagen url={img.src.original} />
+        <div>
+             <TarjetaImagen handleOpen={handleOpen} url={img.src.original} />
         </div>
       <Modal
         open={open}

@@ -18,10 +18,10 @@
         display: flex;
     }
     filter: brightness(0.6);
-    cursor: pointer;
-
-   
-    
+    cursor: pointer;  
+}
+.container__botonDescarga{
+    z-index: 2;
 }
 
 
